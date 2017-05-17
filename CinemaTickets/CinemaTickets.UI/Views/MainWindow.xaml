@@ -7,14 +7,6 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition/>
-        </Grid.RowDefinitions>
-        <Menu Height="100" />
-
+        <TabControl ItemsSource="{Binding Tabs}" ItemTemplate="{StaticResource TabHeader}" />
     </Grid>
 </Window>

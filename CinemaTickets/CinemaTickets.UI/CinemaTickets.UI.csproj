@@ -63,6 +63,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="Resources\CommonResources.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -74,8 +78,13 @@
     <Compile Include="IoC\NinjectHolder.cs" />
     <Compile Include="TicketsUIModule.cs" />
     <Compile Include="Utilities\NinjectBootstrapper.cs" />
-    <Compile Include="ViewModels\Common\MenuItemViewModel.cs" />
+    <Compile Include="ViewModels\Common\TabItemViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
+    <Compile Include="ViewModels\Tabs\FilmTabViewModel.cs" />
+    <Compile Include="ViewModels\Tabs\HallTabViewModel.cs" />
+    <Compile Include="ViewModels\Tabs\ScheduleTabViewModel.cs" />
+    <Compile Include="ViewModels\Tabs\ScreenTabViewModel.cs" />
+    <Compile Include="ViewModels\Tabs\TicketTabViewModel.cs" />
     <Compile Include="Views\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -109,13 +118,25 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Resources\" />
+    <Resource Include="Images\film.png" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CinemaTickets.Data\CinemaTickets.Data.csproj">
       <Project>{8930f3d3-e6ea-42c0-91f4-8490ac4e940c}</Project>
       <Name>CinemaTickets.Data</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\screen.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\hall.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\ticket.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\schedule.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

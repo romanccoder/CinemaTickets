@@ -4,6 +4,6 @@
              xmlns:local="clr-namespace:CinemaTickets.UI"
              StartupUri="Views/MainWindow.xaml">
     <Application.Resources>
-         
+        <ResourceDictionary Source="Resources/CommonResources.xaml"/>
     </Application.Resources>
 </Application>
