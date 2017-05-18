@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using CinemaTickets.Business;
 using CinemaTickets.Data;
 using CinemaTickets.UI.IoC;
 using Ninject;
@@ -14,8 +15,9 @@ namespace CinemaTickets.UI.Utilities
         public static void Bootstrap()
         {
             NinjectHolder.Kernel = new StandardKernel();
-            NinjectHolder.Kernel.Load(new TicketsDataModule());
-            NinjectHolder.Kernel.Load(new TicketsUIModule());
+            NinjectHolder.Kernel.Load(new CinemaDataModule());
+            NinjectHolder.Kernel.Load(new CinemaUIModule());
+            NinjectHolder.Kernel.Load(new CinemaBusinessModule());
         }
     }
 }

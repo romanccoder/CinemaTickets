@@ -7,7 +7,7 @@ using Ninject.Modules;
 
 namespace CinemaTickets.Data
 {
-    public class TicketsDataModule : NinjectModule
+    public class CinemaDataModule : NinjectModule
     {
         public override void Load()
         {

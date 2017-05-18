@@ -19,6 +19,7 @@ namespace CinemaTickets.UI
             base.OnStartup(e);
 
             NinjectBootstrapper.Bootstrap();
+            AutomapperBootstrapper.Bootstrap();
         }
     }
 }

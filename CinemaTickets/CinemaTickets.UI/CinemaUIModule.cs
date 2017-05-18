@@ -9,7 +9,7 @@ using Ninject.Modules;
 
 namespace CinemaTickets.UI
 {
-    public class TicketsUIModule : NinjectModule
+    public class CinemaUIModule : NinjectModule
     {
         public override void Load()
         {
