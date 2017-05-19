@@ -14,9 +14,9 @@
                 <RowDefinition/>
             </Grid.RowDefinitions>
             <ToolBar>
-                <Button Command="{Binding AddCommand}" VerticalAlignment="Stretch" Width="70" Content="Add" />
-                <Button Command="{Binding EditCommand}" VerticalAlignment="Stretch" Width="70" Content="Edit" />
-                <Button Command="{Binding RemoveCommand}" VerticalAlignment="Stretch" Width="70" Content="Remove" />
+                <Button Style="{DynamicResource AddButton}" Command="{Binding AddCommand}" VerticalAlignment="Stretch" />
+                <Button Style="{DynamicResource EditButton}" Command="{Binding EditCommand}" VerticalAlignment="Stretch"/>
+                <Button Style="{DynamicResource RemoveButton}" Command="{Binding RemoveCommand}" VerticalAlignment="Stretch" />
             </ToolBar>
             
             <DataGrid IsReadOnly="True" SelectedItem="{Binding SelectedScreen, Mode=TwoWay}" Grid.Row="1" ItemsSource="{Binding Screens}" AutoGenerateColumns="False">

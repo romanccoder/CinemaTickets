@@ -77,6 +77,26 @@
     <Compile Include="Migrations\201705182058454_Add-Session-Date-datetime2.Designer.cs">
       <DependentUpon>201705182058454_Add-Session-Date-datetime2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201705190557419_Screen-required-halls.cs" />
+    <Compile Include="Migrations\201705190557419_Screen-required-halls.Designer.cs">
+      <DependentUpon>201705190557419_Screen-required-halls.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201705190711167_session-film-hall-required.cs" />
+    <Compile Include="Migrations\201705190711167_session-film-hall-required.Designer.cs">
+      <DependentUpon>201705190711167_session-film-hall-required.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201705191322477_hall-caption-required.cs" />
+    <Compile Include="Migrations\201705191322477_hall-caption-required.Designer.cs">
+      <DependentUpon>201705191322477_hall-caption-required.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201705191344507_film-add-required.cs" />
+    <Compile Include="Migrations\201705191344507_film-add-required.Designer.cs">
+      <DependentUpon>201705191344507_film-add-required.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201705191419244_update-ticket.cs" />
+    <Compile Include="Migrations\201705191419244_update-ticket.Designer.cs">
+      <DependentUpon>201705191419244_update-ticket.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="CinemaDataModule.cs" />
@@ -100,6 +120,21 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201705182058454_Add-Session-Date-datetime2.resx">
       <DependentUpon>201705182058454_Add-Session-Date-datetime2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705190557419_Screen-required-halls.resx">
+      <DependentUpon>201705190557419_Screen-required-halls.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705190711167_session-film-hall-required.resx">
+      <DependentUpon>201705190711167_session-film-hall-required.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705191322477_hall-caption-required.resx">
+      <DependentUpon>201705191322477_hall-caption-required.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705191344507_film-add-required.resx">
+      <DependentUpon>201705191344507_film-add-required.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705191419244_update-ticket.resx">
+      <DependentUpon>201705191419244_update-ticket.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -13,12 +13,18 @@
             </Grid.RowDefinitions>
             <ToolBarTray>
                 <ToolBar Height="{Binding ActualHeight,RelativeSource={RelativeSource FindAncestor,AncestorType={x:Type ToolBarTray}}}" >
-                    <Button Command="{Binding AddCommand}" VerticalAlignment="Stretch" Width="70" Content="Add" />
-                    <Button Command="{Binding EditCommand}" VerticalAlignment="Stretch" Width="70" Content="Edit" />
-                    <Button Command="{Binding RemoveCommand}" VerticalAlignment="Stretch" Width="70" Content="Remove" />
+                    <Button Style="{DynamicResource AddButton}" Command="{Binding AddCommand}" VerticalAlignment="Stretch" />
+                    <Button Style="{DynamicResource EditButton}" Command="{Binding EditCommand}" VerticalAlignment="Stretch" />
+                    <Button Style="{DynamicResource RemoveButton}" Command="{Binding RemoveCommand}" VerticalAlignment="Stretch" />
                 </ToolBar>
                 <ToolBar>
-                    <TextBox Text="Test"/>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock VerticalAlignment="Center" Text="Enter date to search: "/>
+                        <DatePicker DisplayDateStart="{Binding MinDate}" VerticalAlignment="Center" SelectedDate="{Binding SearchDate}"></DatePicker>
+                        <Button Command="{Binding SearchCommand}" Margin="5 0 0 0" VerticalAlignment="Center" Content="Search"/>
+                        <Button Command="{Binding RefreshCommand}" Margin="5 0 0 0" VerticalAlignment="Center" Content="Clear"/>
+                    </StackPanel>
+                    
                 </ToolBar>
             </ToolBarTray>
             <DataGrid IsReadOnly="True" SelectedItem="{Binding SelectedSession, Mode=TwoWay}" Grid.Row="1" ItemsSource="{Binding Sessions}" AutoGenerateColumns="False">
@@ -54,7 +60,7 @@
             <Label Content="Film" Grid.Row="2" />
             <ComboBox MinWidth="300" ItemsSource="{Binding Films}" SelectedItem="{Binding Model.AssociatedFilm}" Grid.Row="3" HorizontalAlignment="Stretch" />
             <Label Content="Date" Grid.Row="4" />
-            <xctk:DateTimePicker MinWidth="300" Value="{Binding Model.Date}" Grid.Row="5" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />
+            <xctk:DateTimePicker Minimum="{Binding MinDate}" MinWidth="300" Value="{Binding Model.Date}" Grid.Row="5" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />
             <Label Content="Price" Grid.Row="6" />
             <TextBox MinWidth="300" Grid.Row="7"  HorizontalAlignment="Stretch" Text="{Binding Model.Price}" />
             <Button Margin="5" Command="{Binding SaveCommand}" Height="50" Width="70" Content="{Binding SaveCaption}" HorizontalAlignment="Center" Grid.Row="8" VerticalAlignment="Center" />

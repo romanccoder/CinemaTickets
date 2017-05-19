@@ -11,12 +11,13 @@
             </Grid.RowDefinitions>
             <ToolBarTray>
                 <ToolBar Height="{Binding ActualHeight,RelativeSource={RelativeSource FindAncestor,AncestorType={x:Type ToolBarTray}}}" >
-                    <Button Command="{Binding AddCommand}" VerticalAlignment="Stretch" Width="70" Content="Add" />
-                    <Button Command="{Binding EditCommand}" VerticalAlignment="Stretch" Width="70" Content="Edit" />
-                    <Button Command="{Binding RemoveCommand}" VerticalAlignment="Stretch" Width="70" Content="Remove" />
+                    <Button Style="{DynamicResource AddButton}" Command="{Binding AddCommand}" VerticalAlignment="Stretch" />
+                    <Button Style="{DynamicResource EditButton}" Command="{Binding EditCommand}" VerticalAlignment="Stretch" />
+                    <Button Style="{DynamicResource RemoveButton}" Command="{Binding RemoveCommand}" VerticalAlignment="Stretch" />
                 </ToolBar>
                 <ToolBar>
-                    <TextBox Text="Test"/>
+                    <TextBlock VerticalAlignment="Center" Text="Film name to search: "/>
+                    <TextBox Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}" MinWidth="200" />
                 </ToolBar>
             </ToolBarTray>
             <DataGrid IsReadOnly="True" SelectedItem="{Binding SelectedFilm, Mode=TwoWay}" Grid.Row="1" ItemsSource="{Binding Films}" AutoGenerateColumns="False">
@@ -44,10 +45,10 @@
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
             <Label Content="Name" />
-            <TextBox MinWidth="300" TextAlignment="Center" x:Name="textBox" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Stretch" Text="{Binding Model.Caption}" />
-            <Label Content="Дата виходу" Grid.Row="2" />
+            <TextBox MinWidth="300" TextAlignment="Center" x:Name="textBox" Grid.Row="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Text="{Binding Model.Caption}" />
+            <Label Content="Release date" Grid.Row="2" />
             <DatePicker MinWidth="300" SelectedDate="{Binding Model.ReleaseDate}" Grid.Row="3" />
-            <Label Content="Опис" Grid.Row="4" />
+            <Label Content="Description" Grid.Row="4" />
             <TextBox MinWidth="300" TextWrapping="Wrap" Grid.Row="5" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Text="{Binding Model.Description}" />
             <Button Command="{Binding SaveCommand}" Height="50" Width="70" Content="{Binding SaveCaption}" HorizontalAlignment="Center" Grid.Row="8" VerticalAlignment="Center" />
 

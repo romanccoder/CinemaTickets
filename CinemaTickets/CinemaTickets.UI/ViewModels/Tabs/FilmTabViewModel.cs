@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using CinemaTickets.Data;
 using CinemaTickets.Data.Entities;
+using CinemaTickets.UI.Messages;
 using CinemaTickets.UI.Utilities;
 using CinemaTickets.UI.ViewModels.Common;
 using CinemaTickets.UI.ViewModels.CRUD;
@@ -48,7 +49,17 @@ namespace CinemaTickets.UI.ViewModels.Tabs
 
         private void Refresh()
         {
-            var films = _context.Films.ToList();
+            List<Film> films = null;
+
+            if (!String.IsNullOrEmpty(SearchText))
+            {
+                films = _context.Films.Where(f => f.Caption.Contains(SearchText)).ToList();
+            }
+            else
+            {
+                films = _context.Films.ToList();
+            }
+            
             Films.Clear();
 
             foreach (var film in films)
@@ -64,6 +75,18 @@ namespace CinemaTickets.UI.ViewModels.Tabs
             set { SetProperty(() => SelectedFilm, value); }
         }
 
+        public string SearchText
+        {
+            get { return GetProperty(() => SearchText); }
+
+            set
+            {
+                SetProperty(() => SearchText, value);
+                Refresh();
+            }
+
+        }
+
         public bool CanEdit()
         {
             return SelectedFilm != null;
@@ -73,6 +96,7 @@ namespace CinemaTickets.UI.ViewModels.Tabs
         public void Add()
         {
             EditFilmViewModel editFilmViewModel = _resolutionRoot.Get<EditFilmViewModel>();
+            ((ISupportParentViewModel) editFilmViewModel).ParentViewModel = this;
             DialogService.ShowDialog("Film Editor", editFilmViewModel);
             Refresh();
         }
@@ -81,7 +105,9 @@ namespace CinemaTickets.UI.ViewModels.Tabs
         public void Edit()
         {
             EditFilmViewModel editFilmViewModel = _resolutionRoot.Get<EditFilmViewModel>(new ConstructorArgument("film", SelectedFilm));
+            ((ISupportParentViewModel)editFilmViewModel).ParentViewModel = this;
             DialogService.ShowDialog("Film Editor", editFilmViewModel);
+            Refresh();
         }
 
         public bool CanRemove()
@@ -93,7 +119,9 @@ namespace CinemaTickets.UI.ViewModels.Tabs
         public void Remove()
         {
             _context.Films.Remove(SelectedFilm);
+            _context.SaveChanges();
             Films.Remove(SelectedFilm);
+            Messenger.Default.Send(new RefreshScheduleMessage());
         }
 
     }

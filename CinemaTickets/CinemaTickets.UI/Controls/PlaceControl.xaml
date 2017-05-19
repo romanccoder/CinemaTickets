@@ -1,0 +1,39 @@
+﻿<UserControl x:Class="CinemaTickets.UI.Controls.PlaceControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:CinemaTickets.UI.Controls"
+             xmlns:utilities="clr-namespace:CinemaTickets.UI.Utilities"
+             xmlns:viewModels="clr-namespace:CinemaTickets.UI.ViewModels"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.Resources>
+        <Style TargetType="{x:Type Button}">
+            <Setter Property="Margin" Value="4" />
+            <Setter Property="FontSize" Value="11" />
+        </Style>
+    </UserControl.Resources>
+    <Border Name="MainBorder" BorderBrush="MediumBlue"  BorderThickness="1">
+        <ItemsControl ItemsSource="{Binding Path=Positions}">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <Grid 
+                        utilities:GridHelpers.RowCount="{Binding Path=Rows, ElementName=placeControl}" 
+                        utilities:GridHelpers.ColumnCount="{Binding Path=PlacesPerRow, ElementName=placeControl}" />
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <ItemsControl.ItemContainerStyle>
+                <Style>
+                    <Setter Property="Grid.Row" Value="{Binding Row}" />
+                    <Setter Property="Grid.Column" Value="{Binding Place}" />
+                </Style>
+            </ItemsControl.ItemContainerStyle>
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <ToggleButton Content="{Binding Place}" />
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+    </Border>
+</UserControl>

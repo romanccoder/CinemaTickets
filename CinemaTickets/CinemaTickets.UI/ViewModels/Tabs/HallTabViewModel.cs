@@ -9,6 +9,7 @@ using DevExpress.Mvvm;
 using System.Collections.ObjectModel;
 using CinemaTickets.Data;
 using CinemaTickets.Data.Entities;
+using CinemaTickets.UI.Messages;
 using CinemaTickets.UI.Utilities;
 using CinemaTickets.UI.ViewModels.CRUD;
 using DevExpress.Mvvm.DataAnnotations;
@@ -30,6 +31,7 @@ namespace CinemaTickets.UI.ViewModels.Tabs
             _resolutionRoot = resolutionRoot;
             _context = context;
             Halls = new ObservableCollection<Hall>();
+            Messenger.Default.Register<RefreshHallsMessage>(this, (message) => Refresh());
             Refresh();
         }
 
@@ -72,6 +74,7 @@ namespace CinemaTickets.UI.ViewModels.Tabs
         public void Add()
         {
             EditHallViewModel editHallViewModel = _resolutionRoot.Get<EditHallViewModel>();
+            ((ISupportParentViewModel) editHallViewModel).ParentViewModel = this;
             DialogService.ShowDialog("Hall Editor", editHallViewModel);
             Refresh();
         }
@@ -80,7 +83,9 @@ namespace CinemaTickets.UI.ViewModels.Tabs
         public void Edit()
         {
             EditHallViewModel editHallViewModel = _resolutionRoot.Get<EditHallViewModel>(new ConstructorArgument("hall", SelectedHall));
+            ((ISupportParentViewModel)editHallViewModel).ParentViewModel = this;
             DialogService.ShowDialog("Hall Editor", editHallViewModel);
+            Refresh();
         }
 
         public bool CanRemove()
@@ -92,7 +97,9 @@ namespace CinemaTickets.UI.ViewModels.Tabs
         public void Remove()
         {
             _context.Halls.Remove(SelectedHall);
+            _context.SaveChanges();
             Halls.Remove(SelectedHall);
+            Messenger.Default.Send(new RefreshScheduleMessage());
         }
     }
 }

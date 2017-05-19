@@ -22,5 +22,16 @@ namespace CinemaTickets.Data.Entities
             set;
         }
 
+        public virtual ICollection<Hall> Halls
+        {
+            get;
+            set;
+        }
+
+        public override string ToString()
+        {
+            return Caption;
+        }
+
     }
 }

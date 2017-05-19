@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
@@ -15,6 +16,7 @@ namespace CinemaTickets.Data.Entities
             set;
         }
 
+        [Required]
         public string Caption
         {
             get;
@@ -29,10 +31,16 @@ namespace CinemaTickets.Data.Entities
         }
 
         [Column(TypeName = "date")]
+        [Required]
         public DateTime ReleaseDate
         {
             get;
             set;
+        }
+
+        public override string ToString()
+        {
+            return Caption;
         }
 
     }

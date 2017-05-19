@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using CinemaTickets.Data;
 using CinemaTickets.Data.Entities;
+using CinemaTickets.UI.Utilities;
 using DevExpress.Mvvm;
 using DevExpress.Mvvm.DataAnnotations;
 
@@ -29,17 +31,32 @@ namespace CinemaTickets.UI.ViewModels.CRUD
             _context = context;
         }
 
+        public IMessageBoxService MessageBoxService
+        {
+            get { return GetService<IMessageBoxService>(); }
+        }
+
         [Command]
         public void Save()
         {
-            if (!IsEditing)
+            List<string> messages = new List<string>();
+            if (!ValidatorHelper.Validate(Model, messages))
             {
-                _context.Screens.Add(Model);
+                MessageBoxService.Show(ValidatorHelper.GetMessage(messages), "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            else
+            {
+                if (!IsEditing)
+                {
+                    _context.Screens.Add(Model);
+                }
+
+                _context.SaveChanges();
+
+                Close();
             }
 
-            _context.SaveChanges();
-
-            Close();
+            
         }
     }
 }

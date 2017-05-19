@@ -1,11 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Data.Entity;
+using System.Data.Entity.Core.Objects;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using CinemaTickets.Data;
 using CinemaTickets.Data.Entities;
+using CinemaTickets.UI.Messages;
 using CinemaTickets.UI.Utilities;
 using CinemaTickets.UI.ViewModels.Common;
 using CinemaTickets.UI.ViewModels.CRUD;
@@ -31,7 +34,10 @@ namespace CinemaTickets.UI.ViewModels.Tabs
             _resolutionRoot = resolutionRoot;
             _context = context;
             Sessions = new ObservableCollection<Session>();
+            Messenger.Default.Register<RefreshScheduleMessage>(this, (message) => Refresh());
             Refresh();
+            MinDate = _context.Sessions.Count() > 0 ?_context.Sessions.Min(s => s.Date) : DateTime.Now;
+            SearchDate = MinDate;
         }
 
         public IDialogService DialogService
@@ -46,7 +52,26 @@ namespace CinemaTickets.UI.ViewModels.Tabs
             set { SetProperty(() => Sessions, value); }
         }
 
-        private void Refresh()
+        public DateTime MinDate
+        {
+            get;
+            set;
+        }
+
+        [Command]
+        public void Search()
+        {
+            var sessions = _context.Sessions.Where(s => DbFunctions.TruncateTime(s.Date) == SearchDate).ToList();
+            Sessions.Clear();
+
+            foreach (var session in sessions)
+            {
+                Sessions.Add(session);
+            }
+        }
+
+        [Command]
+        public void Refresh()
         {
             var sessions = _context.Sessions.ToList();
             Sessions.Clear();
@@ -64,6 +89,17 @@ namespace CinemaTickets.UI.ViewModels.Tabs
             set { SetProperty(() => SelectedSession, value); }
         }
 
+        public DateTime SearchDate
+        {
+            get { return GetProperty(() => SearchDate); }
+
+            set
+            {
+                SetProperty(() => SearchDate, value);
+            }
+
+        }
+
         public bool CanEdit()
         {
             return SelectedSession != null;
@@ -73,6 +109,7 @@ namespace CinemaTickets.UI.ViewModels.Tabs
         public void Add()
         {
             EditSessionViewModel editSessionViewModel = _resolutionRoot.Get<EditSessionViewModel>();
+            ((ISupportParentViewModel)editSessionViewModel).ParentViewModel = this;
             DialogService.ShowDialog("Schedule Editor", editSessionViewModel);
             Refresh();
         }
@@ -81,7 +118,9 @@ namespace CinemaTickets.UI.ViewModels.Tabs
         public void Edit()
         {
             EditSessionViewModel editSessionViewModel = _resolutionRoot.Get<EditSessionViewModel>(new ConstructorArgument("session", SelectedSession));
+            ((ISupportParentViewModel)editSessionViewModel).ParentViewModel = this;
             DialogService.ShowDialog("Film Editor", editSessionViewModel);
+            Refresh();
         }
 
         public bool CanRemove()
@@ -93,6 +132,7 @@ namespace CinemaTickets.UI.ViewModels.Tabs
         public void Remove()
         {
             _context.Sessions.Remove(SelectedSession);
+            _context.SaveChanges();
             Sessions.Remove(SelectedSession);
         }
 

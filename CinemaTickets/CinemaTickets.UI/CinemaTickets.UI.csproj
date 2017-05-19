@@ -91,6 +91,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Page Include="Controls\PlaceControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Resources\CommonResources.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -111,6 +115,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Resources\TicketResources.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -120,20 +128,30 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="CinemaUIProfile.cs" />
+    <Compile Include="Controls\PlaceControl.xaml.cs">
+      <DependentUpon>PlaceControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="IoC\NinjectHolder.cs" />
     <Compile Include="CinemaUIModule.cs" />
+    <Compile Include="Messages\RefreshHallsMessage.cs" />
+    <Compile Include="Messages\RefreshScheduleMessage.cs" />
     <Compile Include="Services\DialogService.cs" />
     <Compile Include="Services\ISupportClose.cs" />
     <Compile Include="Utilities\AutomapperBootstrapper.cs" />
+    <Compile Include="Utilities\GridHelpers.cs" />
     <Compile Include="Utilities\IDialogServiceExtensions.cs" />
     <Compile Include="Utilities\NinjectBootstrapper.cs" />
+    <Compile Include="Utilities\Position.cs" />
+    <Compile Include="Utilities\ValidatorHelper.cs" />
     <Compile Include="ViewModels\Common\TabItemViewModel.cs" />
+    <Compile Include="ViewModels\CRUD\BuyTicketViewModel.cs" />
     <Compile Include="ViewModels\CRUD\EditFilmViewModel.cs" />
     <Compile Include="ViewModels\CRUD\EditHallViewModel.cs" />
     <Compile Include="ViewModels\CRUD\EditScreenViewModel.cs" />
     <Compile Include="ViewModels\CRUD\EditSessionViewModel.cs" />
     <Compile Include="ViewModels\CRUD\EditViewModel.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
+    <Compile Include="ViewModels\PlaceControlViewModel.cs" />
     <Compile Include="ViewModels\Tabs\FilmTabViewModel.cs" />
     <Compile Include="ViewModels\Tabs\HallTabViewModel.cs" />
     <Compile Include="ViewModels\Tabs\ScheduleTabViewModel.cs" />
@@ -194,6 +212,17 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Infrastructure\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\add.png" />
+    <Resource Include="Images\remove.png" />
+    <Resource Include="Images\edit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\money.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\return.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

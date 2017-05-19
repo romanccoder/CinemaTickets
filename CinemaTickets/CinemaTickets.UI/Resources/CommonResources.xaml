@@ -3,12 +3,80 @@
                     xmlns:local="clr-namespace:CinemaTickets.UI.Resources"
                     xmlns:common="clr-namespace:CinemaTickets.UI.ViewModels.Common"
                     xmlns:tabs="clr-namespace:CinemaTickets.UI.ViewModels.Tabs">
-    <ResourceDictionary.MergedDictionaries>
-        <ResourceDictionary Source="ScreenResources.xaml"/>
-        <ResourceDictionary Source="HallResources.xaml"/>
-        <ResourceDictionary Source="FilmResources.xaml"/>
-        <ResourceDictionary Source="ScheduleResources.xaml"/>
-    </ResourceDictionary.MergedDictionaries>
+
+    <Image x:Key="AddImage" Height="32" Width="32" Source="../Images/add.png"/>
+    <Image x:Key="RemoveImage" Height="32" Width="32" Source="../Images/remove.png"/>
+    <Image x:Key="EditImage" Height="32" Width="32" Source="../Images/edit.png"/>
+
+    <Style x:Key="AddButton" TargetType="{x:Type Button}">
+        <Setter Property="Width" Value="80"></Setter>
+        <Setter Property="Content">
+            <Setter.Value>
+                <ContentControl>
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="../Images/add.png" Width="24" Height="24"/>
+                        <TextBlock Margin="5 0 0 0" Text="Add" VerticalAlignment="Center" FontWeight="SemiBold" />
+                    </StackPanel>
+                </ContentControl>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="EditButton" TargetType="{x:Type Button}">
+        <Setter Property="Width" Value="80"></Setter>
+        <Setter Property="Content">
+            <Setter.Value>
+                <ContentControl>
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="../Images/edit.png" Width="24" Height="24"/>
+                        <TextBlock Margin="5 0 0 0" Text="Edit" VerticalAlignment="Center" FontWeight="SemiBold" />
+                    </StackPanel>
+                </ContentControl>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="RemoveButton" TargetType="{x:Type Button}">
+        <Setter Property="Width" Value="80"></Setter>
+        <Setter Property="Content">
+            <Setter.Value>
+                <ContentControl>
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="../Images/remove.png" Width="24" Height="24"/>
+                        <TextBlock Margin="5 0 0 0" Text="Remove" VerticalAlignment="Center" FontWeight="SemiBold" />
+                    </StackPanel>
+                </ContentControl>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="BuyButton" TargetType="{x:Type Button}">
+        <Setter Property="Width" Value="80"></Setter>
+        <Setter Property="Content">
+            <Setter.Value>
+                <ContentControl>
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="../Images/money.png" Width="24" Height="24"/>
+                        <TextBlock Margin="5 0 0 0" Text="Buy" VerticalAlignment="Center" FontWeight="SemiBold" />
+                    </StackPanel>
+                </ContentControl>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="ReturnButton" TargetType="{x:Type Button}">
+        <Setter Property="Width" Value="80"></Setter>
+        <Setter Property="Content">
+            <Setter.Value>
+                <ContentControl>
+                    <StackPanel Orientation="Horizontal">
+                        <Image Source="../Images/return.png" Width="24" Height="24"/>
+                        <TextBlock Margin="5 0 0 0" Text="Return" VerticalAlignment="Center" HorizontalAlignment="Stretch" FontWeight="SemiBold" />
+                    </StackPanel>
+                </ContentControl>
+            </Setter.Value>
+        </Setter>
+    </Style>
 
     <DataTemplate x:Key="TabHeader">
         <StackPanel Orientation="Horizontal" Margin="10">
@@ -18,5 +86,13 @@
                        VerticalAlignment="Center" FontSize="14" FontWeight="SemiBold" />
         </StackPanel>
     </DataTemplate>
+
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="ScreenResources.xaml"/>
+        <ResourceDictionary Source="HallResources.xaml"/>
+        <ResourceDictionary Source="FilmResources.xaml"/>
+        <ResourceDictionary Source="ScheduleResources.xaml"/>
+        <ResourceDictionary Source="TicketResources.xaml"/>
+    </ResourceDictionary.MergedDictionaries>
 
 </ResourceDictionary>

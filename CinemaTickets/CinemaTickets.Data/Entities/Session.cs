@@ -24,18 +24,22 @@ namespace CinemaTickets.Data.Entities
             set;
         }
 
+        [Required]
         public virtual Film AssociatedFilm
         {
             get;
             set;
         }
 
+        [Required]
         public virtual Hall AssociatedHall
         {
             get;
             set;
         }
 
+        [Required]
+        [Range(1, int.MaxValue)]
         public int Price
         {
             get;

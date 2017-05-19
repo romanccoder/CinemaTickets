@@ -5,6 +5,7 @@ using System.Linq;
 using AutoMapper;
 using CinemaTickets.Data;
 using CinemaTickets.Data.Entities;
+using CinemaTickets.UI.Messages;
 using CinemaTickets.UI.Utilities;
 using CinemaTickets.UI.ViewModels.Common;
 using CinemaTickets.UI.ViewModels.CRUD;
@@ -71,6 +72,7 @@ namespace CinemaTickets.UI.ViewModels.Tabs
         public void Add()
         {
             EditScreenViewModel editScreenViewModel = _resolutionRoot.Get<EditScreenViewModel>();
+            ((ISupportParentViewModel) editScreenViewModel).ParentViewModel = this;
             DialogService.ShowDialog("Screen Editor", editScreenViewModel);
             Refresh();
         }
@@ -79,7 +81,9 @@ namespace CinemaTickets.UI.ViewModels.Tabs
         public void Edit()
         {
             EditScreenViewModel editScreenViewModel = _resolutionRoot.Get<EditScreenViewModel>(new ConstructorArgument("screen", SelectedScreen));
+            ((ISupportParentViewModel)editScreenViewModel).ParentViewModel = this;
             DialogService.ShowDialog("Screen Editor", editScreenViewModel);
+            Refresh();
         }
 
         public bool CanRemove()
@@ -91,7 +95,10 @@ namespace CinemaTickets.UI.ViewModels.Tabs
         public void Remove()
         {
             _context.Screens.Remove(SelectedScreen);
+            _context.SaveChanges();
             Screens.Remove(SelectedScreen);
+            Messenger.Default.Send(new RefreshHallsMessage());
+            Messenger.Default.Send(new RefreshScheduleMessage());
         }
     }
 }

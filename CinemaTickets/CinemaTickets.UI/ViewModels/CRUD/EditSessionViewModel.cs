@@ -4,9 +4,13 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using CinemaTickets.Data;
 using CinemaTickets.Data.Entities;
+using CinemaTickets.UI.Utilities;
+using DevExpress.Mvvm;
 using DevExpress.Mvvm.DataAnnotations;
+using DevExpress.Mvvm.UI;
 
 namespace CinemaTickets.UI.ViewModels.CRUD
 {
@@ -19,6 +23,7 @@ namespace CinemaTickets.UI.ViewModels.CRUD
         {
             SaveCaption = "Save";
             Model = session;
+            MinDate = Model.Date;
             IsEditing = true;
             _context = context;
             LoadDependencies();
@@ -28,6 +33,8 @@ namespace CinemaTickets.UI.ViewModels.CRUD
         {
             SaveCaption = "Add";
             Model = new Session();
+            Model.Date = DateTime.Now;
+            MinDate = DateTime.Now;
             _context = context;
             LoadDependencies();
         }
@@ -50,17 +57,37 @@ namespace CinemaTickets.UI.ViewModels.CRUD
             set;
         }
 
+        public DateTime MinDate
+        {
+            get;
+            private set;
+        }
+
+        public IMessageBoxService MessageBoxService
+        {
+            get { return GetService<IMessageBoxService>(); }
+        }
+
         [Command]
         public void Save()
         {
-            if (!IsEditing)
+            List<string> messages = new List<string>();
+            if (!ValidatorHelper.Validate(Model, messages))
             {
-                _context.Sessions.Add(Model);
+                MessageBoxService.Show(ValidatorHelper.GetMessage(messages), "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+            else
+            {
+                if (!IsEditing)
+                {
+                    _context.Sessions.Add(Model);
+                }
 
-            _context.SaveChanges();
+                _context.SaveChanges();
 
-            Close();
+                Close();
+            }
+            
         }
     }
 }
