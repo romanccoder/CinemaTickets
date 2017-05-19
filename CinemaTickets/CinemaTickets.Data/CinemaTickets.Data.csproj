@@ -57,12 +57,50 @@
     <Compile Include="Entities\Session.cs" />
     <Compile Include="Entities\Ticket.cs" />
     <Compile Include="Entities\TicketStatus.cs" />
+    <Compile Include="Migrations\201705171804227_InitialCreate.cs" />
+    <Compile Include="Migrations\201705171804227_InitialCreate.Designer.cs">
+      <DependentUpon>201705171804227_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201705181819583_Screen-Caption-Required.cs" />
+    <Compile Include="Migrations\201705181819583_Screen-Caption-Required.Designer.cs">
+      <DependentUpon>201705181819583_Screen-Caption-Required.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201705181949573_Remove-Film-ImageName.cs" />
+    <Compile Include="Migrations\201705181949573_Remove-Film-ImageName.Designer.cs">
+      <DependentUpon>201705181949573_Remove-Film-ImageName.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201705182050344_Add-Session-Price.cs" />
+    <Compile Include="Migrations\201705182050344_Add-Session-Price.Designer.cs">
+      <DependentUpon>201705182050344_Add-Session-Price.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201705182058454_Add-Session-Date-datetime2.cs" />
+    <Compile Include="Migrations\201705182058454_Add-Session-Date-datetime2.Designer.cs">
+      <DependentUpon>201705182058454_Add-Session-Date-datetime2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="CinemaDataModule.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201705171804227_InitialCreate.resx">
+      <DependentUpon>201705171804227_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705181819583_Screen-Caption-Required.resx">
+      <DependentUpon>201705181819583_Screen-Caption-Required.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705181949573_Remove-Film-ImageName.resx">
+      <DependentUpon>201705181949573_Remove-Film-ImageName.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705182050344_Add-Session-Price.resx">
+      <DependentUpon>201705182050344_Add-Session-Price.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201705182058454_Add-Session-Date-datetime2.resx">
+      <DependentUpon>201705182058454_Add-Session-Date-datetime2.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

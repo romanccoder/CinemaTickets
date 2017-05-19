@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,6 +16,8 @@ namespace CinemaTickets.Data.Entities
             set;
         }
 
+        [Required]
+        [Column(TypeName = "datetime2")]
         public DateTime Date
         {
             get;
@@ -27,6 +31,12 @@ namespace CinemaTickets.Data.Entities
         }
 
         public virtual Hall AssociatedHall
+        {
+            get;
+            set;
+        }
+
+        public int Price
         {
             get;
             set;

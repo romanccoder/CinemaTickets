@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using CinemaTickets.UI.ViewModels.Common;
 using CinemaTickets.UI.ViewModels.Tabs;
 using DevExpress.Mvvm;
+using DevExpress.Mvvm.POCO;
 using Ninject;
 using Ninject.Syntax;
 
@@ -23,11 +24,30 @@ namespace CinemaTickets.UI.ViewModels
 
         private void InitializeTabs(IResolutionRoot root)
         {
-            Tabs.Add(root.Get<TicketTabViewModel>());
-            Tabs.Add(root.Get<ScheduleTabViewModel>());
-            Tabs.Add(root.Get<FilmTabViewModel>());
-            Tabs.Add(root.Get<ScreenTabViewModel>());
-            Tabs.Add(root.Get<HallTabViewModel>());
+            // Tickets tab
+            TicketTabViewModel ticketTabViewModel = root.Get<TicketTabViewModel>();
+            ((ISupportParentViewModel)ticketTabViewModel).ParentViewModel = this;
+            Tabs.Add(ticketTabViewModel);
+
+            // Schedule tab
+            ScheduleTabViewModel scheduleTabViewModel = root.Get<ScheduleTabViewModel>();
+            ((ISupportParentViewModel)scheduleTabViewModel).ParentViewModel = this;
+            Tabs.Add(scheduleTabViewModel);
+
+            // Films tab
+            FilmTabViewModel filmTabViewModel = root.Get<FilmTabViewModel>();
+            ((ISupportParentViewModel)filmTabViewModel).ParentViewModel = this;
+            Tabs.Add(filmTabViewModel);
+
+            // Halls tab
+            HallTabViewModel hallTabViewModel = root.Get<HallTabViewModel>();
+            ((ISupportParentViewModel)hallTabViewModel).ParentViewModel = this;
+            Tabs.Add(hallTabViewModel);
+
+            // Screens tab
+            ScreenTabViewModel screenTabViewModel = root.Get<ScreenTabViewModel>();
+            ((ISupportParentViewModel)screenTabViewModel).ParentViewModel = this;
+            Tabs.Add(screenTabViewModel);
         }
 
         public ObservableCollection<TabItemViewModel> Tabs

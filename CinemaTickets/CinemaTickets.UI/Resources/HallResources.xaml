@@ -1,0 +1,60 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:CinemaTickets.UI.Resources"
+                    xmlns:tabs="clr-namespace:CinemaTickets.UI.ViewModels.Tabs"
+                    xmlns:crud="clr-namespace:CinemaTickets.UI.ViewModels.CRUD">
+    <DataTemplate DataType="{x:Type tabs:HallTabViewModel}">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="60"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <ToolBar>
+                <Button Command="{Binding AddCommand}" VerticalAlignment="Stretch" Width="70" Content="Add" />
+                <Button Command="{Binding EditCommand}" VerticalAlignment="Stretch" Width="70" Content="Edit" />
+                <Button Command="{Binding RemoveCommand}" VerticalAlignment="Stretch" Width="70" Content="Remove" />
+            </ToolBar>
+
+            <DataGrid IsReadOnly="True" SelectedItem="{Binding SelectedHall, Mode=TwoWay}" Grid.Row="1" ItemsSource="{Binding Halls}" AutoGenerateColumns="False">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Width="*" Header="Identifier" Binding="{Binding HallId}" />
+                    <DataGridTextColumn Width="*" Header="Name of the hall" Binding="{Binding Caption}" />
+                    <DataGridTextColumn Width="*" Header="Rows" Binding="{Binding Rows}" />
+                    <DataGridTextColumn Width="*" Header="Places in one row" Binding="{Binding PlacesPerRow}" />
+                    <DataGridTextColumn Width="*" Header="Screen Caption" Binding="{Binding AssociatedScreen.Caption}" />
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type crud:EditHallViewModel}">
+        <Grid Margin="10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Label x:Name="label" Content="Name" />
+            <TextBox MinWidth="300" TextAlignment="Center" Grid.Row="1" HorizontalAlignment="Stretch" Text="{Binding Model.Caption}" />
+            <Label Content="Screen" Grid.Row="2" />
+            <ComboBox SelectedItem="{Binding Model.AssociatedScreen}" ItemsSource="{Binding Screens}" Grid.Row="3" />
+            <Label Content="Rows" Grid.Row="4" />
+            <TextBox TextAlignment="Center" Grid.Row="5" HorizontalAlignment="Stretch" Text="{Binding Model.Rows}" />
+            <Label Content="Places per one row" Grid.Row="6" />
+            <TextBox TextAlignment="Center" Grid.Row="7" HorizontalAlignment="Stretch" Text="{Binding Model.PlacesPerRow}" />
+            <Button Command="{Binding SaveCommand}" Height="45" Width="70" Content="{Binding SaveCaption}" HorizontalAlignment="Center" Grid.Row="8" Margin="5" />
+
+        </Grid>
+    </DataTemplate>
+    
+</ResourceDictionary>

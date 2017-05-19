@@ -6,8 +6,12 @@
         xmlns:local="clr-namespace:CinemaTickets.UI"
         xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core" 
         xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm"
+        xmlns:services="clr-namespace:CinemaTickets.UI.Services"
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
+    <dxmvvm:Interaction.Behaviors>
+        <services:DialogService />
+    </dxmvvm:Interaction.Behaviors>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition/>

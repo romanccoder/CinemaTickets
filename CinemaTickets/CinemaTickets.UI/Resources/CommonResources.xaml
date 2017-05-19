@@ -6,6 +6,8 @@
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="ScreenResources.xaml"/>
         <ResourceDictionary Source="HallResources.xaml"/>
+        <ResourceDictionary Source="FilmResources.xaml"/>
+        <ResourceDictionary Source="ScheduleResources.xaml"/>
     </ResourceDictionary.MergedDictionaries>
 
     <DataTemplate x:Key="TabHeader">

@@ -35,11 +35,5 @@ namespace CinemaTickets.Data.Entities
             set;
         }
 
-        public string ImageName
-        {
-            get;
-            set;
-        }
-
     }
 }

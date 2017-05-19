@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
-using CinemaTickets.Business;
 
 namespace CinemaTickets.UI.Utilities
 {
@@ -15,7 +14,6 @@ namespace CinemaTickets.UI.Utilities
             Mapper.Initialize(e =>
             {
                 e.AddProfile(new CinemaUIProfile());
-                e.AddProfile(new CinemaBusinessProfile());
             });
         }
     }
