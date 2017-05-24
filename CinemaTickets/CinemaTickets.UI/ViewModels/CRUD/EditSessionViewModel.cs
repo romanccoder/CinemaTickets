@@ -16,7 +16,7 @@ namespace CinemaTickets.UI.ViewModels.CRUD
 {
     public class EditSessionViewModel : EditViewModel<Session>
     {
-
+        // Review OD: Field can be made readonly
         private CinemaContext _context;
 
         public EditSessionViewModel(Session session, CinemaContext context)
@@ -32,6 +32,7 @@ namespace CinemaTickets.UI.ViewModels.CRUD
         public EditSessionViewModel(CinemaContext context)
         {
             SaveCaption = "Add";
+            // Review OD: It's better to use object initializer
             Model = new Session();
             Model.Date = DateTime.Now;
             MinDate = DateTime.Now;

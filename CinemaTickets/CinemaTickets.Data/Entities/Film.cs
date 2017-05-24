@@ -1,4 +1,5 @@
-﻿using System;
+// Review OD: There are some unnecessary using directives in all solution
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;

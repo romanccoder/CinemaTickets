@@ -50,7 +50,7 @@ namespace CinemaTickets.UI.ViewModels.Tabs
         private void Refresh()
         {
             List<Film> films = null;
-
+            // Review OD: It's rather to use ternary operator instead of if-else
             if (!String.IsNullOrEmpty(SearchText))
             {
                 films = _context.Films.Where(f => f.Caption.Contains(SearchText)).ToList();
