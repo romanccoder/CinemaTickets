@@ -1,5 +1,6 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                     <!-- Namespaces below are not required in the code -->
                     xmlns:local="clr-namespace:CinemaTickets.UI.Resources"
                     xmlns:common="clr-namespace:CinemaTickets.UI.ViewModels.Common"
                     xmlns:tabs="clr-namespace:CinemaTickets.UI.ViewModels.Tabs">
