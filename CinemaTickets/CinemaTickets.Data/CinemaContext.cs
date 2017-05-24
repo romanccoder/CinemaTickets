@@ -1,4 +1,5 @@
-﻿using System;
+// Review OD: There are some unnecessary usings
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
@@ -14,7 +15,7 @@ namespace CinemaTickets.Data
         public CinemaContext() : base("Cinema")
         {           
         }
-
+        // Review OD: Method overriding is unnecessary
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
