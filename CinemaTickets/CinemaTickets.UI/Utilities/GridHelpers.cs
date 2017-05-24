@@ -49,7 +49,7 @@ namespace CinemaTickets.UI.Utilities
         private static void OnRowCountChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
             Grid grid = d as Grid;
-
+            // Review OD: Possible NullReferenceException, so you can use conditional access or check grid for null
             grid.RowDefinitions.Clear();
 
             for (int i = 0; i <= (int)e.NewValue; i++)
