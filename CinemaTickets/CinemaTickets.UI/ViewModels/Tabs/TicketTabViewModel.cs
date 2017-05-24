@@ -125,6 +125,7 @@ namespace CinemaTickets.UI.ViewModels.Tabs
         {
             MessageBoxService.Show("This button simulates scan, in real case it will be qr code scanner.",
                 "Information", MessageBoxButton.OK, MessageBoxImage.Information);
+             // Review OD: Don't use magic hardcoded strings or numbers
             SearchId = "12345";
         }
 
